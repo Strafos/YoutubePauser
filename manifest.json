@@ -1,8 +1,8 @@
 {
-  "name": "VideoPause",
+  "name": "SiteTracker",
   "version": "1.0",
-  "description": "Pause all videos",
-  "permissions": ["activeTab", "http://*/*", "downloads", "declarativeContent", "storage", "tabs"],
+  "description": "Track time spent on each site",
+  "permissions": ["activeTab", "http://*/*", "declarativeContent", "storage", "tabs"],
 
   "options_page": "options.html",
   "content_scripts": [

@@ -1,26 +1,14 @@
 'use strict';
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if (request.signal == "pause_all") {
-      chrome.tabs.query({}, function(tabs) {
+chrome.runtime.onInstalled.addListener(
+  function() {
+    setInterval(() => {
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         tabs.forEach(tab => {
-          chrome.tabs.sendMessage(tab.id, {signal: "pause"}, function(response) {
-            console.log("send pause to other tabs");
+          chrome.tabs.sendMessage(tab.id, {time: "1", url: tab.url}, function(response) {
+            console.log("Foo");
           });
         });
       });
-      sendResponse({info: "successfully paused"});
-    }
-
-    if (request.signal == "play_all"){
-      chrome.tabs.query({}, function(tabs) {
-        tabs.forEach(tab => {
-          chrome.tabs.sendMessage(tab.id, {signal: "play"}, function(response) {
-            console.log("send play to other tabs");
-          });
-        });
-      });
-      sendResponse({info: "successfully played"});
-    }
+    }, 1000);
   });
