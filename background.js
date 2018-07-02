@@ -13,8 +13,6 @@ const allTimes = new DefaultDict(0);
 function parseHostname(url){
   const parser = document.createElement("a");
   parser.href = url;
-  console.log("parser")
-  console.log(parser.hostname);
   return parser.hostname;
 }
 
@@ -24,11 +22,11 @@ chrome.runtime.onInstalled.addListener(
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         tabs.forEach(tab => {
           const hostname = parseHostname(tab.url);
-          allTimes[hostname] += 5;
+          allTimes[hostname] += 1;
           chrome.tabs.sendMessage(tab.id, {time: allTimes[hostname]}, function(response) {
-            a = 1
+            var a = 1
           });
         });
       });
-    }, 5000);
+    }, 1000);
   });

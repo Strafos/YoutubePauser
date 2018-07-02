@@ -11,8 +11,7 @@
         "<all_urls>"
       ],
       "js": ["content.js"],
-      "run_at": "document_start" // run before everything else, else there will be conflicts at pages which accept keyboard inputs ( eg:google search)
-
+      "run_at": "document_start"
     }
   ],
   "background": {
